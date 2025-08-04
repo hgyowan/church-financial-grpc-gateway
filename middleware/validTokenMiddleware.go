@@ -4,7 +4,7 @@ import (
 	"errors"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
-	"github.com/hgyowan/church-financial-grpc-gateway/internal"
+	accountModel "github.com/hgyowan/church-financial-account-grpc/domain/token"
 	"github.com/hgyowan/go-pkg-library/envs"
 	"google.golang.org/grpc/metadata"
 	"net/http"
@@ -23,12 +23,12 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 			}
 		}
 
-		var claims = &internal.JWTCustomClaims{}
+		var claims = &accountModel.JWTCustomClaims{}
 		_, err := jwt.ParseWithClaims(token, claims, func(token *jwt.Token) (interface{}, error) {
 			if _, ok := token.Method.(*jwt.SigningMethodHMAC); !ok {
 				return nil, fmt.Errorf("unexpected signing method: %v", token.Header["alg"])
 			}
-			return internal.JwtKey, nil
+			return []byte(envs.JwtSecret), nil
 		})
 		if err != nil {
 			if errors.Is(err, jwt.ErrSignatureInvalid) {
