@@ -4,10 +4,15 @@ import (
 	"context"
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
+	userV1 "github.com/hgyowan/church-financial-account-grpc/gen/user/v1"
 	"github.com/hgyowan/church-financial-grpc-gateway/internal"
 	"github.com/hgyowan/church-financial-grpc-gateway/middleware"
+	"github.com/hgyowan/go-pkg-library/envs"
+	pkgError "github.com/hgyowan/go-pkg-library/error"
 	pkgGrpc "github.com/hgyowan/go-pkg-library/grpc-library/grpc"
 	pkgLogger "github.com/hgyowan/go-pkg-library/logger"
+	"google.golang.org/grpc"
+	"google.golang.org/grpc/credentials/insecure"
 	"net/http"
 	"strings"
 )
@@ -25,10 +30,10 @@ func MustNewRouter(ctx context.Context, mux *runtime.ServeMux) *router {
 }
 
 func (r *router) addHandlerEndpoints(ctx context.Context) error {
-	//opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	//if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAPIHost, opts); err != nil {
-	//	return pkgError.Wrap(err)
-	//}
+	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
+	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAPIHost, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
 
 	return nil
 }

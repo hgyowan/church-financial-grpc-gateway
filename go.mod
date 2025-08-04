@@ -6,7 +6,7 @@ require (
 	github.com/black-06/grpc-gateway-file v0.1.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
-	github.com/hgyowan/go-pkg-library v1.0.6
+	github.com/hgyowan/go-pkg-library v1.0.7
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/sync v0.15.0
@@ -17,6 +17,7 @@ require (
 
 require (
 	github.com/grpc-ecosystem/go-grpc-middleware/v2 v2.3.2 // indirect
+	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250804065849-76fd26a6a612 // indirect
 	github.com/jinzhu/inflection v1.0.0 // indirect
 	github.com/jinzhu/now v1.1.5 // indirect
 	github.com/oklog/run v1.2.0 // indirect
