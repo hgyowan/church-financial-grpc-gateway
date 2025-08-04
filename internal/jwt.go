@@ -8,7 +8,6 @@ import (
 var JwtKey = []byte(envs.JwtSecret)
 
 type JWTCustomClaims struct {
-	UserID   uint
-	LangCode string
+	UserID uint
 	jwt.StandardClaims
 }
