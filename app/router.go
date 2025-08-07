@@ -51,8 +51,12 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 			return
 		}
 
-		if strings.HasPrefix(path, "/v1/login/email") {
-			r.mux.ServeHTTP(res, req)
+		if strings.HasPrefix(path, "/v1/public") {
+			base := pkgGrpc.Chain(
+				r.mux,
+				middleware.InterceptMetadataMiddleware,
+			)
+			base.ServeHTTP(res, req)
 			return
 		}
 
