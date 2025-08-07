@@ -31,7 +31,7 @@ func MustNewRouter(ctx context.Context, mux *runtime.ServeMux) *router {
 
 func (r *router) addHandlerEndpoints(ctx context.Context) error {
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAPIHost, opts); err != nil {
+	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}
 
@@ -43,6 +43,11 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 		path := req.URL.Path
 		if path == "/swagger" {
 			http.ServeFile(res, req, "./swagger/index.html")
+			return
+		}
+
+		if path == "/healthz" {
+			res.WriteHeader(http.StatusOK)
 			return
 		}
 

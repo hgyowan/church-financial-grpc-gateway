@@ -1,0 +1,74 @@
+name: Deploy
+
+on:
+  push:
+    tags:
+      - 'dev-v*.*.*'
+      - 'release-v*.*.*'
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout source code
+        uses: actions/checkout@v3
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Set up QEMU (for ARM build on x86 GitHub runner)
+        uses: docker/setup-qemu-action@v3
+
+      - name: Make docker image tag
+        id: make-image-tag
+        env:
+          REGISTRY: docker.holyflows.com
+          IMAGE_NAME: cfm/church-financial-grpc-gateway
+        run: |
+          if [[ $GITHUB_REF == 'refs/tags/dev'* ]]; then
+            export IMAGE_TAG=${GITHUB_REF#refs/*/}
+          elif [[ $GITHUB_REF == 'refs/tags/release'* ]]; then
+            export IMAGE_TAG=${GITHUB_REF#refs/*/}
+          fi
+          echo ::set-output name=NAME::$REGISTRY/$IMAGE_NAME:$IMAGE_TAG
+
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: .
+          file: ./Dockerfile
+          platforms: linux/arm64
+          push: true
+          tags: ${{ steps.make-image-tag.outputs.NAME }}
+          build-args: |
+            TOKEN_FOR_GITHUB=${{ secrets.TOKEN_FOR_GITHUB }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
+
+      - name: Clone ArgoCD manifest repository
+        uses: actions/checkout@v3
+        with:
+          repository: wan-s-hub/argo-k3s
+          token: ${{ secrets.MANIFEST_REPO_TOKEN }}
+          path: manifests
+
+      - name: Update image tag in deployment.yaml
+        run: |
+          if [[ $GITHUB_REF == 'refs/tags/dev'* ]]; then
+          export IMAGE_TAG=${GITHUB_REF#refs/*/}
+          elif [[ $GITHUB_REF == 'refs/tags/release'* ]]; then
+          export IMAGE_TAG=${GITHUB_REF#refs/*/}
+          fi
+          
+          cd manifests/apps/church-financial-grpc-gateway-dev/templates
+          yq e -i '.spec.template.spec.containers[0].image = "docker.holyflows.com/cfm/church-financial-grpc-gateway:'"$IMAGE_TAG"'"' deployment.yaml
+
+      - name: Commit and push updated manifest
+        run: |
+          cd manifests
+          git config user.name "GitHub Actions"
+          git config user.email "actions@github.com"
+          git add .
+          git commit -m "Update image tag to ${{ steps.make-image-tag.outputs.NAME }} by ${{ github.actor }}"
+          git push origin master
