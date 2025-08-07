@@ -5,7 +5,7 @@ window.onload = function() {
   window.ui = SwaggerUIBundle({
     urls: [
       {
-        url: "http://192.168.20.104:9000/public/cfm/swagger/user.swagger.json",
+        url: "https://bucket.holyflows.com/public/cfm/swagger/user.swagger.json",
         name: "User"
       },
     ],
