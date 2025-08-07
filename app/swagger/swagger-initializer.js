@@ -5,8 +5,8 @@ window.onload = function() {
   window.ui = SwaggerUIBundle({
     urls: [
       {
-        url: "http://192.168.20.104:9000/cfm/swagger/user.swagger.json",
-        name: "Analytics"
+        url: "http://192.168.20.104:9000/public/cfm/swagger/user.swagger.json",
+        name: "User"
       },
     ],
     dom_id: '#swagger-ui',
