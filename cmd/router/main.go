@@ -37,11 +37,11 @@ func main() {
 	r := app.MustNewRouter(gCtx, gMux)
 	c := cors.New(cors.Options{
 		AllowedMethods:   []string{"GET", "POST", "PUT", "PATCH", "DELETE", "HEAD", "OPTIONS", "UPDATE"},
-		AllowedHeaders:   []string{"X-Request-Id", "X-Forwarded-Proto", "X-Forwarded-Host", "Origin", "Content-Length", "Access-Control-Allow-Origin", "Content-Type", "Accept-Encoding", "X-Requested-With", " X-CSRF-Token", "Cache-Control", "x-user-token", "Baggage"},
-		AllowCredentials: false,
+		AllowedHeaders:   []string{"X-Request-Id", "X-Forwarded-Proto", "X-Forwarded-Host", "Origin", "Content-Length", "Access-Control-Allow-Origin", "Content-Type", "Accept-Encoding", "X-Requested-With", "X-CSRF-Token", "Cache-Control", "x-user-token", "Baggage"},
+		AllowCredentials: true,
 		ExposedHeaders:   []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Cache-Control", "Content-Language", "Content-Type"},
 		MaxAge:           int((12 * time.Hour).Seconds()),
-		AllowedOrigins:   []string{"*"},
+		AllowedOrigins:   []string{"http://localhost:3000", "https://cfm.holyflows.com"},
 	}).Handler(r.RegisterHandler(gCtx))
 
 	group.Go(func() error {
