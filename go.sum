@@ -20,8 +20,8 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1 h1:X5VWvz21y3gzm9Nw/kaUeku/1+u
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1/go.mod h1:Zanoh4+gvIgluNqcfMVTJueD4wSS5hT7zTt4Mrutd90=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250809061433-5af72f832daf h1:S3i9+X1wzrnvbB0HHypFZ7g/2t+Hh+oDh5pmDTZauXM=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250809061433-5af72f832daf/go.mod h1:7pjTYC845ZFlFBzoMkfK0Qit9dReOZh5bdpNXiks17U=
-github.com/hgyowan/go-pkg-library v1.2.5 h1:1sGmF/rVqMDJnVnFZWMeWL128adG9LbpyOExbg2WwOY=
-github.com/hgyowan/go-pkg-library v1.2.5/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
+github.com/hgyowan/go-pkg-library v1.3.0 h1:hwjy03THEr7ccvzoS2yj5lVJRx9x0eYkZ/czMWzqTB0=
+github.com/hgyowan/go-pkg-library v1.3.0/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
