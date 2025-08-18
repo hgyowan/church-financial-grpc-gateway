@@ -41,7 +41,7 @@ func main() {
 		AllowCredentials: true,
 		ExposedHeaders:   []string{"Content-Length", "Access-Control-Allow-Origin", "Access-Control-Allow-Headers", "Cache-Control", "Content-Language", "Content-Type"},
 		MaxAge:           int((12 * time.Hour).Seconds()),
-		AllowedOrigins:   []string{"http://localhost:3000", "https://cfm.holyflows.com"},
+		AllowedOrigins:   []string{"http://localhost:3000", envs.CFMHost},
 	}).Handler(r.RegisterHandler(gCtx))
 
 	group.Go(func() error {
