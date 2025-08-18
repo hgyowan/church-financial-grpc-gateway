@@ -36,7 +36,7 @@ func (r *router) addHandlerEndpoints(ctx context.Context) error {
 		return pkgError.Wrap(err)
 	}
 
-	if err := workspaceV1.RegisterWorkspaceServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
+	if err := workspaceV1.RegisterWorkspaceServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}
 
