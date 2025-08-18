@@ -6,7 +6,7 @@ require (
 	github.com/black-06/grpc-gateway-file v0.1.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
-	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250816182501-3556af12e991
+	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250818021540-cf367de28d1c
 	github.com/hgyowan/go-pkg-library v1.3.4
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0

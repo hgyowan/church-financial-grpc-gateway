@@ -5,6 +5,7 @@ import (
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	userV1 "github.com/hgyowan/church-financial-account-grpc/gen/user/v1"
+	workspaceV1 "github.com/hgyowan/church-financial-core-grpc/gen/workspace/v1"
 	"github.com/hgyowan/church-financial-grpc-gateway/internal"
 	"github.com/hgyowan/church-financial-grpc-gateway/middleware"
 	"github.com/hgyowan/go-pkg-library/envs"
@@ -32,6 +33,10 @@ func MustNewRouter(ctx context.Context, mux *runtime.ServeMux) *router {
 func (r *router) addHandlerEndpoints(ctx context.Context) error {
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
 	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
+
+	if err := workspaceV1.RegisterWorkspaceServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}
 
