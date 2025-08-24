@@ -12,6 +12,10 @@ window.onload = function() {
         url: "https://bucket.holyflows.com/public/cfm/swagger/workspace.swagger.json",
         name: "Workspace"
       },
+      {
+        url: "https://bucket.holyflows.com/public/cfm/swagger/member.swagger.json",
+        name: "member"
+      },
     ],
     dom_id: '#swagger-ui',
     deepLinking: true,
