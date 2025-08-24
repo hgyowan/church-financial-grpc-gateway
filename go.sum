@@ -20,10 +20,10 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1 h1:X5VWvz21y3gzm9Nw/kaUeku/1+u
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1/go.mod h1:Zanoh4+gvIgluNqcfMVTJueD4wSS5hT7zTt4Mrutd90=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250820070039-993b0320346c h1:z4XYExmQtpQohg5Kjeig8jzeIkbUTTyQAyOANcLGex0=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250820070039-993b0320346c/go.mod h1:cpC93rlqf+Fpx2EtF8ARE8w4CVIfVtTqS//trdJcnpg=
-github.com/hgyowan/church-financial-core-grpc v0.0.0-20250819173406-196ddad0d640 h1:ZDE+BDnMiq/2IbAxpGkOBd2VdqfXxdESqhEarPV6vcA=
-github.com/hgyowan/church-financial-core-grpc v0.0.0-20250819173406-196ddad0d640/go.mod h1:mUixPgVgH775mHjeqBsy2KQsr0tqCpQJRK9iA6O4REA=
-github.com/hgyowan/go-pkg-library v1.3.8 h1:z0ENd5eWh1ck9F+W+Ps2xHNp04fZUB7c6uYJT6/8dfk=
-github.com/hgyowan/go-pkg-library v1.3.8/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
+github.com/hgyowan/church-financial-core-grpc v0.0.0-20250824121223-2da99b41dba2 h1:S/EiRypUvLiGfBJndMyQWcun0XuRuZWbnZhXQuWcmQU=
+github.com/hgyowan/church-financial-core-grpc v0.0.0-20250824121223-2da99b41dba2/go.mod h1:sWQLtFpScojHnVQ0FL4g6C+QSr5HRyRixLU+jdKKsCU=
+github.com/hgyowan/go-pkg-library v1.3.10 h1:k3cT3m2zHthQoaZYlyofQPDf9+q5uQTGYA7Ncd0cJI4=
+github.com/hgyowan/go-pkg-library v1.3.10/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
