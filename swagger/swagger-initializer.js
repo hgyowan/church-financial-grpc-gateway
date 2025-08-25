@@ -14,7 +14,7 @@ window.onload = function() {
       },
       {
         url: "https://bucket.holyflows.com/public/cfm/swagger/member.swagger.json",
-        name: "member"
+        name: "Member"
       },
     ],
     dom_id: '#swagger-ui',
