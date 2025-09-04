@@ -51,19 +51,31 @@ func (r *router) addHandlerEndpoints(ctx context.Context) error {
 func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		path := req.URL.Path
-		if path == "/swagger" {
-			http.ServeFile(res, req, "./swagger/index.html")
-			return
-		}
 
 		if path == "/healthz" {
 			res.WriteHeader(http.StatusOK)
 			return
 		}
 
+		if path == "/swagger" {
+			http.ServeFile(res, req, "./swagger/index.html")
+			return
+		}
+
 		if internal.IsSwaggerFile(path) {
 			http.ServeFile(res, req, fmt.Sprintf("./swagger%s", path))
 			return
+		}
+
+		if strings.HasPrefix(path, "/v1/user") {
+			switch path {
+			case "/v1/user/token/refresh":
+				base := pkgGrpc.Chain(
+					r.mux,
+				)
+				base.ServeHTTP(res, req)
+				return
+			}
 		}
 
 		if strings.HasPrefix(path, "/v1/public") {

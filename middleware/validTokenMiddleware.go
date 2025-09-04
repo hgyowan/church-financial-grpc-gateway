@@ -30,9 +30,12 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 			return []byte(envs.JwtAccessSecret), nil
 		})
 		if err != nil {
-			if errors.Is(err, jwt.ErrSignatureInvalid) {
-				http.Error(w, "token is expired", http.StatusUnauthorized)
-				return
+			var e jwt.ValidationError
+			if errors.As(err, &e) {
+				if e.Errors&jwt.ValidationErrorExpired != 0 {
+					http.Error(w, "token is expired", http.StatusUnauthorized)
+					return
+				}
 			}
 
 			http.Error(w, "Authentication failed", http.StatusForbidden)
