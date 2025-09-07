@@ -16,6 +16,10 @@ window.onload = function() {
         url: "https://bucket.holyflows.com/public/cfm/swagger/member.swagger.json",
         name: "Member"
       },
+      {
+        url: "https://bucket.holyflows.com/public/cfm/swagger/transaction.swagger.json",
+        name: "Transaction"
+      },
     ],
     dom_id: '#swagger-ui',
     deepLinking: true,

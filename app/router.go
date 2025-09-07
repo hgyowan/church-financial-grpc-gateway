@@ -6,6 +6,7 @@ import (
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	userV1 "github.com/hgyowan/church-financial-account-grpc/gen/user/v1"
 	memberV1 "github.com/hgyowan/church-financial-core-grpc/gen/member/v1"
+	transactionV1 "github.com/hgyowan/church-financial-core-grpc/gen/transaction/v1"
 	workspaceV1 "github.com/hgyowan/church-financial-core-grpc/gen/workspace/v1"
 	"github.com/hgyowan/church-financial-grpc-gateway/internal"
 	"github.com/hgyowan/church-financial-grpc-gateway/middleware"
@@ -42,6 +43,10 @@ func (r *router) addHandlerEndpoints(ctx context.Context) error {
 	}
 
 	if err := memberV1.RegisterMemberServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
+
+	if err := transactionV1.RegisterTransactionServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}
 
