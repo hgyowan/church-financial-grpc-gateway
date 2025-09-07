@@ -1,7 +1,6 @@
 package middleware
 
 import (
-	"errors"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	accountModel "github.com/hgyowan/church-financial-account-grpc/domain/token"
@@ -17,7 +16,7 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 		if token == "" {
 			token = r.URL.Query().Get(envs.UserTokenHeaderName)
 			if token == "" {
-				http.Error(w, "token is required", http.StatusUnauthorized)
+				http.Error(w, "token is required", http.StatusForbidden)
 				return
 			}
 		}
@@ -30,15 +29,7 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 			return []byte(envs.JwtAccessSecret), nil
 		})
 		if err != nil {
-			var e jwt.ValidationError
-			if errors.As(err, &e) {
-				if e.Errors&jwt.ValidationErrorExpired != 0 {
-					http.Error(w, "token is expired", http.StatusUnauthorized)
-					return
-				}
-			}
-
-			http.Error(w, "Authentication failed", http.StatusForbidden)
+			http.Error(w, "token is expired", http.StatusUnauthorized)
 			return
 		}
 
