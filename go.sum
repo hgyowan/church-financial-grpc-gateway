@@ -22,8 +22,8 @@ github.com/hgyowan/church-financial-account-grpc v0.0.0-20250904053136-24008e856
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250904053136-24008e856545/go.mod h1:M6ikvkja8C2HnALZzeqPmSaC5LlTbaCMREp4O62jvbE=
 github.com/hgyowan/church-financial-core-grpc v0.0.0-20250907093507-08b267891b3e h1:upglcDkApSNuw4VRodoadottCVG1XWm7eZ2JCxLbmgU=
 github.com/hgyowan/church-financial-core-grpc v0.0.0-20250907093507-08b267891b3e/go.mod h1:Nh9PtLgZp0nGh6UL9nhX6nycOsL5DJTmaruOmtGsyQU=
-github.com/hgyowan/go-pkg-library v1.3.16 h1:l/lemoKknFXut1iQT5kS4lADcfGK9hlu8JSRHtQdvU4=
-github.com/hgyowan/go-pkg-library v1.3.16/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
+github.com/hgyowan/go-pkg-library v1.3.18 h1:6Fkx9nHR6rhEo4sGK8kysta7clG0xhxpdZcbL5hYsi8=
+github.com/hgyowan/go-pkg-library v1.3.18/go.mod h1:tAkcgaBk9NULFq46/AXMQYWg8vrOJJdRk0ypB9o3BQc=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=

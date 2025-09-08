@@ -5,10 +5,11 @@ go 1.23.3
 require (
 	github.com/black-06/grpc-gateway-file v0.1.2
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
+	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
 	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250904053136-24008e856545
 	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250907093507-08b267891b3e
-	github.com/hgyowan/go-pkg-library v1.3.16
+	github.com/hgyowan/go-pkg-library v1.3.18
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/sync v0.15.0

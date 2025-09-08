@@ -27,6 +27,10 @@ func MetadataMiddleware(ctx context.Context, r *http.Request) metadata.MD {
 			kv = append(kv, "userAgent", md.Get("userAgent")[0])
 		}
 
+		if len(md.Get("sessionID")) > 0 {
+			kv = append(kv, "sessionID", md.Get("sessionID")[0])
+		}
+
 		return metadata.Pairs(kv...)
 	}
 

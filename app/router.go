@@ -77,6 +77,7 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 			case "/v1/user/token/refresh":
 				base := pkgGrpc.Chain(
 					r.mux,
+					middleware.GetSessionCookieMiddleware,
 				)
 				base.ServeHTTP(res, req)
 				return
@@ -84,6 +85,15 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 		}
 
 		if strings.HasPrefix(path, "/v1/public") {
+			if strings.HasPrefix(path, "/v1/public/user/login") {
+				base := pkgGrpc.Chain(
+					r.mux,
+					middleware.SessionCookieMiddleware,
+				)
+				base.ServeHTTP(res, req)
+				return
+			}
+
 			base := pkgGrpc.Chain(
 				r.mux,
 				middleware.InterceptMetadataMiddleware,
