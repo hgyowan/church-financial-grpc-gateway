@@ -8,7 +8,7 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
 	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250904053136-24008e856545
-	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250907093507-08b267891b3e
+	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250911092807-0c72ff27bb3b
 	github.com/hgyowan/go-pkg-library v1.3.18
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0
