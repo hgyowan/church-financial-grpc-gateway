@@ -30,7 +30,7 @@ func SessionCookieMiddleware(next http.Handler) http.Handler {
 		}
 
 		domain := u.Host
-		if strings.Contains(envs.CFMCookieDomain, domain) {
+		if !strings.Contains(envs.CFMCookieDomain, domain) {
 			http.Error(w, "Forbidden: unauthorized domain", http.StatusForbidden)
 			return
 		}
