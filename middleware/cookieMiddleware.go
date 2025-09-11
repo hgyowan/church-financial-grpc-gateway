@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/hgyowan/go-pkg-library/envs"
+	"golang.org/x/net/publicsuffix"
 	"google.golang.org/grpc/metadata"
 	"net/http"
 	"net/url"
@@ -35,9 +36,18 @@ func SessionCookieMiddleware(next http.Handler) http.Handler {
 			return
 		}
 
-		secure := true
-		if envs.ServiceType == "local" {
-			secure = false
+		secure := false
+		host := u.Hostname()
+		if envs.ServiceType != "local" {
+			secure = true
+
+			eTLDPlusOne, err := publicsuffix.EffectiveTLDPlusOne(host)
+			if err != nil {
+				http.Error(w, "Forbidden: unauthorized tld domain", http.StatusForbidden)
+				return
+			}
+
+			host = eTLDPlusOne
 		}
 
 		sid := uuid.NewString()
@@ -45,7 +55,7 @@ func SessionCookieMiddleware(next http.Handler) http.Handler {
 			Name:     "sid",
 			Value:    sid,
 			Path:     "/",
-			Domain:   fmt.Sprintf(".%s", domain),
+			Domain:   fmt.Sprintf(".%s", host),
 			HttpOnly: true,
 			Secure:   secure,
 			SameSite: http.SameSiteLaxMode,
