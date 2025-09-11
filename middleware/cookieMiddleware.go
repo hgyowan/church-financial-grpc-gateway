@@ -38,7 +38,7 @@ func SessionCookieMiddleware(next http.Handler) http.Handler {
 
 		secure := false
 		host := u.Hostname()
-		if envs.ServiceType != "local" {
+		if host != "localhost" {
 			secure = true
 
 			eTLDPlusOne, err := publicsuffix.EffectiveTLDPlusOne(host)
