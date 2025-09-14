@@ -8,10 +8,11 @@ require (
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
 	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250904053136-24008e856545
-	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250911092807-0c72ff27bb3b
+	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250914124929-e0aa31a8f0f4
 	github.com/hgyowan/go-pkg-library v1.3.18
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0
+	golang.org/x/net v0.40.0
 	golang.org/x/sync v0.15.0
 	google.golang.org/genproto/googleapis/api v0.0.0-20250707201910-8d1bb00bc6a7
 	google.golang.org/grpc v1.74.2
@@ -25,7 +26,6 @@ require (
 	github.com/oklog/run v1.2.0 // indirect
 	go.uber.org/mock v0.5.2 // indirect
 	go.uber.org/multierr v1.10.0 // indirect
-	golang.org/x/net v0.40.0 // indirect
 	golang.org/x/sys v0.33.0 // indirect
 	golang.org/x/text v0.26.0 // indirect
 	google.golang.org/genproto/googleapis/rpc v0.0.0-20250707201910-8d1bb00bc6a7 // indirect
