@@ -81,6 +81,14 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 				)
 				base.ServeHTTP(res, req)
 				return
+			case "/v1/user/logout":
+				base := pkgGrpc.Chain(
+					r.mux,
+					middleware.ValidTokenMiddleware,
+					middleware.DeleteSessionCookieMiddleware,
+				)
+				base.ServeHTTP(res, req)
+				return
 			}
 		}
 
