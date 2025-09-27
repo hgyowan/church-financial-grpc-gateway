@@ -5,6 +5,9 @@ import (
 	"fmt"
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	userV1 "github.com/hgyowan/church-financial-account-grpc/gen/user/v1"
+	memberV1 "github.com/hgyowan/church-financial-core-grpc/gen/member/v1"
+	transactionV1 "github.com/hgyowan/church-financial-core-grpc/gen/transaction/v1"
+	workspaceV1 "github.com/hgyowan/church-financial-core-grpc/gen/workspace/v1"
 	"github.com/hgyowan/church-financial-grpc-gateway/internal"
 	"github.com/hgyowan/church-financial-grpc-gateway/middleware"
 	"github.com/hgyowan/go-pkg-library/envs"
@@ -31,7 +34,19 @@ func MustNewRouter(ctx context.Context, mux *runtime.ServeMux) *router {
 
 func (r *router) addHandlerEndpoints(ctx context.Context) error {
 	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
-	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAPIHost, opts); err != nil {
+	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
+
+	if err := workspaceV1.RegisterWorkspaceServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
+
+	if err := memberV1.RegisterMemberServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
+		return pkgError.Wrap(err)
+	}
+
+	if err := transactionV1.RegisterTransactionServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMCoreGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}
 
@@ -41,6 +56,12 @@ func (r *router) addHandlerEndpoints(ctx context.Context) error {
 func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		path := req.URL.Path
+
+		if path == "/healthz" {
+			res.WriteHeader(http.StatusOK)
+			return
+		}
+
 		if path == "/swagger" {
 			http.ServeFile(res, req, "./swagger/index.html")
 			return
@@ -51,7 +72,28 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 			return
 		}
 
+		if strings.HasPrefix(path, "/v1/user") {
+			switch path {
+			case "/v1/user/token/refresh":
+				base := pkgGrpc.Chain(
+					r.mux,
+					middleware.GetSessionCookieMiddleware,
+				)
+				base.ServeHTTP(res, req)
+				return
+			}
+		}
+
 		if strings.HasPrefix(path, "/v1/public") {
+			if strings.HasPrefix(path, "/v1/public/user/login") {
+				base := pkgGrpc.Chain(
+					r.mux,
+					middleware.SessionCookieMiddleware,
+				)
+				base.ServeHTTP(res, req)
+				return
+			}
+
 			base := pkgGrpc.Chain(
 				r.mux,
 				middleware.InterceptMetadataMiddleware,

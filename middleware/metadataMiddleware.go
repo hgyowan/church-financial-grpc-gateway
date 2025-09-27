@@ -11,20 +11,24 @@ func MetadataMiddleware(ctx context.Context, r *http.Request) metadata.MD {
 	md, ok := metadata.FromOutgoingContext(r.Context())
 	if ok {
 		var kv []string
-		if len(md.Get("user_id")) > 0 {
-			kv = append(kv, "user_id", md.Get("user_id")[0])
+		if len(md.Get("userID")) > 0 {
+			kv = append(kv, "userID", md.Get("userID")[0])
 		}
 
 		if len(md.Get("ip")) > 0 {
 			kv = append(kv, "ip", md.Get("ip")[0])
 		}
 
-		if len(md.Get("access_token")) > 0 {
-			kv = append(kv, "access_token", md.Get("access_token")[0])
+		if len(md.Get("accessToken")) > 0 {
+			kv = append(kv, "accessToken", md.Get("accessToken")[0])
 		}
 
-		if len(md.Get("user_agent")) > 0 {
-			kv = append(kv, "user_agent", md.Get("user_agent")[0])
+		if len(md.Get("userAgent")) > 0 {
+			kv = append(kv, "userAgent", md.Get("userAgent")[0])
+		}
+
+		if len(md.Get("sessionID")) > 0 {
+			kv = append(kv, "sessionID", md.Get("sessionID")[0])
 		}
 
 		return metadata.Pairs(kv...)
@@ -35,7 +39,7 @@ func MetadataMiddleware(ctx context.Context, r *http.Request) metadata.MD {
 
 func InterceptMetadataMiddleware(next http.Handler) http.Handler {
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
-		newCtx := metadata.AppendToOutgoingContext(r.Context(), "ip", getClientIP(r), "user_agent", r.Header.Get("User-Agent"))
+		newCtx := metadata.AppendToOutgoingContext(r.Context(), "ip", getClientIP(r), "userAgent", r.Header.Get("User-Agent"))
 		r = r.WithContext(newCtx)
 
 		next.ServeHTTP(w, r)

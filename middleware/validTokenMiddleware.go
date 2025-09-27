@@ -1,14 +1,12 @@
 package middleware
 
 import (
-	"errors"
 	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	accountModel "github.com/hgyowan/church-financial-account-grpc/domain/token"
 	"github.com/hgyowan/go-pkg-library/envs"
 	"google.golang.org/grpc/metadata"
 	"net/http"
-	"strconv"
 	"strings"
 )
 
@@ -18,7 +16,7 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 		if token == "" {
 			token = r.URL.Query().Get(envs.UserTokenHeaderName)
 			if token == "" {
-				http.Error(w, "token is required", http.StatusUnauthorized)
+				http.Error(w, "token is required", http.StatusForbidden)
 				return
 			}
 		}
@@ -31,17 +29,12 @@ func ValidTokenMiddleware(next http.Handler) http.Handler {
 			return []byte(envs.JwtAccessSecret), nil
 		})
 		if err != nil {
-			if errors.Is(err, jwt.ErrSignatureInvalid) {
-				http.Error(w, "token is expired", http.StatusUnauthorized)
-				return
-			}
-
-			http.Error(w, "Authentication failed", http.StatusForbidden)
+			http.Error(w, "token is expired", http.StatusUnauthorized)
 			return
 		}
 
 		// 메타데이터를 컨텍스트에 추가
-		newCtx := metadata.AppendToOutgoingContext(r.Context(), "user_id", strconv.Itoa(int(claims.UserID)), "ip", getClientIP(r), "access_token", token)
+		newCtx := metadata.AppendToOutgoingContext(r.Context(), "userID", claims.UserID, "ip", getClientIP(r), "accessToken", token)
 		r = r.WithContext(newCtx)
 
 		next.ServeHTTP(w, r)

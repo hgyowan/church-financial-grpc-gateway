@@ -5,8 +5,20 @@ window.onload = function() {
   window.ui = SwaggerUIBundle({
     urls: [
       {
-        url: "http://192.168.20.104:9000/cfm/swagger/user.swagger.json",
-        name: "Analytics"
+        url: "https://bucket.holyflows.com/public/cfm/swagger/user.swagger.json",
+        name: "User"
+      },
+      {
+        url: "https://bucket.holyflows.com/public/cfm/swagger/workspace.swagger.json",
+        name: "Workspace"
+      },
+      {
+        url: "https://bucket.holyflows.com/public/cfm/swagger/member.swagger.json",
+        name: "Member"
+      },
+      {
+        url: "https://bucket.holyflows.com/public/cfm/swagger/transaction.swagger.json",
+        name: "Transaction"
       },
     ],
     dom_id: '#swagger-ui',
