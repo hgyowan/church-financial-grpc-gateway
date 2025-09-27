@@ -56,12 +56,13 @@ jobs:
       - name: Update image tag in deployment.yaml
         run: |
           if [[ $GITHUB_REF == 'refs/tags/dev'* ]]; then
-          export IMAGE_TAG=${GITHUB_REF#refs/*/}
+            export IMAGE_TAG=${GITHUB_REF#refs/*/}
+            cd manifests/apps/church-financial-grpc-gateway-dev/templates
           elif [[ $GITHUB_REF == 'refs/tags/release'* ]]; then
-          export IMAGE_TAG=${GITHUB_REF#refs/*/}
+            export IMAGE_TAG=${GITHUB_REF#refs/*/}
+            cd manifests/apps/church-financial-grpc-gateway-prd/templates
           fi
           
-          cd manifests/apps/church-financial-grpc-gateway-dev/templates
           yq e -i '.spec.template.spec.containers[0].image = "docker.holyflows.com/cfm/church-financial-grpc-gateway:'"$IMAGE_TAG"'"' deployment.yaml
 
       - name: Commit and push updated manifest

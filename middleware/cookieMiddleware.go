@@ -83,3 +83,57 @@ func GetSessionCookieMiddleware(next http.Handler) http.Handler {
 		next.ServeHTTP(w, r)
 	})
 }
+
+func DeleteSessionCookieMiddleware(next http.Handler) http.Handler {
+	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
+		origin := r.Header.Get("Origin")
+		if origin == "" {
+			origin = r.Header.Get("Referer")
+		}
+
+		if origin == "" {
+			http.Error(w, "Forbidden: missing origin", http.StatusForbidden)
+			return
+		}
+
+		u, err := url.Parse(origin)
+		if err != nil {
+			http.Error(w, "Forbidden: invalid origin", http.StatusForbidden)
+			return
+		}
+
+		domain := u.Host
+		if !strings.Contains(envs.CFMCookieDomain, domain) {
+			http.Error(w, "Forbidden: unauthorized domain", http.StatusForbidden)
+			return
+		}
+
+		secure := false
+		host := u.Hostname()
+		if host != "localhost" {
+			secure = true
+
+			eTLDPlusOne, err := publicsuffix.EffectiveTLDPlusOne(host)
+			if err != nil {
+				http.Error(w, "Forbidden: unauthorized tld domain", http.StatusForbidden)
+				return
+			}
+
+			host = eTLDPlusOne
+		}
+
+		cookie := &http.Cookie{
+			Name:     "sid",
+			Value:    "",
+			Path:     "/",
+			Domain:   fmt.Sprintf(".%s", host),
+			HttpOnly: true,
+			Secure:   secure,
+			SameSite: http.SameSiteLaxMode,
+			MaxAge:   -1,
+		}
+		http.SetCookie(w, cookie)
+
+		next.ServeHTTP(w, r)
+	})
+}
