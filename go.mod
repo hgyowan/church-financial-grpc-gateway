@@ -7,9 +7,9 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1
-	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250925070005-36febdd9696d
+	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621
 	github.com/hgyowan/church-financial-core-grpc v0.0.0-20250929091620-479db757d9ee
-	github.com/hgyowan/go-pkg-library v1.3.27
+	github.com/hgyowan/go-pkg-library v1.3.28
 	github.com/rs/cors v1.11.1
 	go.uber.org/zap v1.27.0
 	golang.org/x/net v0.40.0
