@@ -97,6 +97,7 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 				base := pkgGrpc.Chain(
 					r.mux,
 					middleware.SessionCookieMiddleware,
+					middleware.InterceptMetadataMiddleware,
 				)
 				base.ServeHTTP(res, req)
 				return
