@@ -1,4 +1,4 @@
-FROM library/golang:1.23.3-alpine AS builder
+FROM library/golang:1.24.9-alpine AS builder
 RUN apk add --no-cache git openssl
 
 # 작업 디렉터리 설정
