@@ -20,8 +20,8 @@ github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1 h1:X5VWvz21y3gzm9Nw/kaUeku/1+u
 github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.1/go.mod h1:Zanoh4+gvIgluNqcfMVTJueD4wSS5hT7zTt4Mrutd90=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621 h1:dj11zcVg7XdMrbAFbd8lHcreGUJtrmodysSw8GnYfWw=
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621/go.mod h1:WMvjDrPuNe+NX0/4d/SpPv7wqfdZ7gLm2BCCultIi/w=
-github.com/hgyowan/church-financial-core-grpc v0.0.0-20251114045416-61e7ca548022 h1:UjDnOPCPVTDepFmCFViD5wTWG1OrCudHDkcDeH90Faw=
-github.com/hgyowan/church-financial-core-grpc v0.0.0-20251114045416-61e7ca548022/go.mod h1:D6xRXobNiGzgZLcHGqjc50Pk9IY7qcvL5O3dPqYJEZ8=
+github.com/hgyowan/church-financial-core-grpc v0.0.0-20251114082740-a2d10ba26820 h1:Stm1FB6/0f7aKMBooc+wrC1EPt+T+8KOmwxcCWTL3jI=
+github.com/hgyowan/church-financial-core-grpc v0.0.0-20251114082740-a2d10ba26820/go.mod h1:D6xRXobNiGzgZLcHGqjc50Pk9IY7qcvL5O3dPqYJEZ8=
 github.com/hgyowan/go-pkg-library v1.4.8 h1:Xx/eZeUhr8Pd+QHpREn5j6Qa/Z2MGwvkFEfhEM+Ci1c=
 github.com/hgyowan/go-pkg-library v1.4.8/go.mod h1:ptwPhprgLxJ5Fiw59R5K69iRNBAmz4rK80ayrc6khwU=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
