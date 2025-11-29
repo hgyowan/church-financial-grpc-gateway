@@ -15,16 +15,26 @@ import (
 	"github.com/hgyowan/church-financial-grpc-gateway/middleware"
 	"github.com/hgyowan/go-pkg-library/envs"
 	pkgLogger "github.com/hgyowan/go-pkg-library/logger"
+	pkgTrace "github.com/hgyowan/go-pkg-library/trace"
 	"github.com/rs/cors"
 	"golang.org/x/sync/errgroup"
 )
 
 func main() {
+	// OpenTelemetry Tracer 초기화
 	pkgLogger.MustInitZapLogger()
 
 	bCtx, cancelFunc := context.WithCancel(context.Background())
 	group, gCtx := errgroup.WithContext(bCtx)
 	doneChan := make(chan struct{}, 1)
+
+	if envs.ServiceType == envs.PrdType {
+		shutdown := pkgTrace.InitTracer(gCtx, &pkgTrace.OpenTelemetryConfig{
+			ServiceName: envs.ServerName,
+			Endpoint:    envs.OpenTelemetryEndpoint,
+		})
+		defer shutdown()
+	}
 
 	gMux := runtime.NewServeMux(
 		runtime.WithMetadata(middleware.MetadataMiddleware),
