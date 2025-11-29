@@ -33,6 +33,8 @@ github.com/hgyowan/go-pkg-library v1.5.0 h1:0XCq3J17YrNG7TS0GF/N1wEi2J4roO0uIVtJ
 github.com/hgyowan/go-pkg-library v1.5.0/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
 github.com/hgyowan/go-pkg-library v1.5.1 h1:9rXgN2WIlzi+zYrGlxJS/EZWUlUzW5jdAtwKocUuux4=
 github.com/hgyowan/go-pkg-library v1.5.1/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
+github.com/hgyowan/go-pkg-library v1.5.2 h1:i8BlWHjQwkIEqRuHnNkKaEuQJ7LoCxZQPVfvh/qZvBk=
+github.com/hgyowan/go-pkg-library v1.5.2/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=

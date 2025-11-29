@@ -28,7 +28,7 @@ func main() {
 	group, gCtx := errgroup.WithContext(bCtx)
 	doneChan := make(chan struct{}, 1)
 
-	if envs.ServiceType == envs.PrdType {
+	if envs.ServiceType != envs.PrdType {
 		shutdown := pkgTrace.InitTracer(gCtx, &pkgTrace.OpenTelemetryConfig{
 			ServiceName: envs.ServerName,
 			Endpoint:    envs.OpenTelemetryEndpoint,

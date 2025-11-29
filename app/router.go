@@ -34,7 +34,10 @@ func MustNewRouter(ctx context.Context, mux *runtime.ServeMux) *router {
 }
 
 func (r *router) addHandlerEndpoints(ctx context.Context) error {
-	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials())}
+	opts := []grpc.DialOption{grpc.WithTransportCredentials(insecure.NewCredentials()),
+		grpc.WithChainUnaryInterceptor(
+			pkgGrpc.TraceClientInterceptor(),
+		)}
 	if err := userV1.RegisterUserServiceHandlerFromEndpoint(ctx, r.mux, envs.CFMAccountGRPC, opts); err != nil {
 		return pkgError.Wrap(err)
 	}

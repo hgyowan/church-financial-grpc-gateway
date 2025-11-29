@@ -9,7 +9,7 @@ require (
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
 	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621
 	github.com/hgyowan/church-financial-core-grpc v0.0.0-20251124061843-9acf9c72bf50
-	github.com/hgyowan/go-pkg-library v1.5.1
+	github.com/hgyowan/go-pkg-library v1.5.2
 	github.com/rs/cors v1.11.1
 	go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.63.0
 	go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.63.0
