@@ -6,8 +6,6 @@ github.com/davecgh/go-spew v1.1.1 h1:vj9j/u1bqnvCEfJOwUhtlOARqs3+rkHYY13jYWTU97c
 github.com/davecgh/go-spew v1.1.1/go.mod h1:J7Y8YcW2NihsgmVo/mv3lAwl/skON4iLHjSsI+c5H38=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible h1:7qlOGliEKZXTDg6OTjfoBKDXWrumCAMpl/TFQ4/5kLM=
 github.com/dgrijalva/jwt-go v3.2.0+incompatible/go.mod h1:E3ru+11k8xSBh+hMPgOLZmtrrCbhqsmaPHjLKYnJCaQ=
-github.com/felixge/httpsnoop v1.0.4 h1:NFTV2Zj1bL4mc9sqWACXbQFVBBg2W3GPvqp8/ESS2Wg=
-github.com/felixge/httpsnoop v1.0.4/go.mod h1:m8KPJKqk1gH5J9DgRY2ASl2lWCfGKXixSwevea8zH2U=
 github.com/go-logr/logr v1.2.2/go.mod h1:jdQByPbusPIv2/zmleS9BjJVeZ6kBagPoEUsqbVz/1A=
 github.com/go-logr/logr v1.4.3 h1:CjnDlHq8ikf6E492q6eKboGOC0T8CDaOvkHCIg8idEI=
 github.com/go-logr/logr v1.4.3/go.mod h1:9T104GzyrTigFIr8wt5mBrctHMim0Nb2HLGrmQ40KvY=
@@ -27,14 +25,8 @@ github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4
 github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621/go.mod h1:WMvjDrPuNe+NX0/4d/SpPv7wqfdZ7gLm2BCCultIi/w=
 github.com/hgyowan/church-financial-core-grpc v0.0.0-20251124061843-9acf9c72bf50 h1:YwCzt2OUaDdw8zKocE6YJtTp5c0T57cneiqalft1UAA=
 github.com/hgyowan/church-financial-core-grpc v0.0.0-20251124061843-9acf9c72bf50/go.mod h1:D6xRXobNiGzgZLcHGqjc50Pk9IY7qcvL5O3dPqYJEZ8=
-github.com/hgyowan/go-pkg-library v1.4.8 h1:Xx/eZeUhr8Pd+QHpREn5j6Qa/Z2MGwvkFEfhEM+Ci1c=
-github.com/hgyowan/go-pkg-library v1.4.8/go.mod h1:ptwPhprgLxJ5Fiw59R5K69iRNBAmz4rK80ayrc6khwU=
-github.com/hgyowan/go-pkg-library v1.5.0 h1:0XCq3J17YrNG7TS0GF/N1wEi2J4roO0uIVtJ8R6mW0E=
-github.com/hgyowan/go-pkg-library v1.5.0/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
-github.com/hgyowan/go-pkg-library v1.5.1 h1:9rXgN2WIlzi+zYrGlxJS/EZWUlUzW5jdAtwKocUuux4=
-github.com/hgyowan/go-pkg-library v1.5.1/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
-github.com/hgyowan/go-pkg-library v1.5.2 h1:i8BlWHjQwkIEqRuHnNkKaEuQJ7LoCxZQPVfvh/qZvBk=
-github.com/hgyowan/go-pkg-library v1.5.2/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
+github.com/hgyowan/go-pkg-library v1.5.5 h1:sephIGyME7XImIaVk1urqWdmo3g/GtAH7hXHDsFL89w=
+github.com/hgyowan/go-pkg-library v1.5.5/go.mod h1:1LGuibVLKnorz+9HBZH1RyBEdMuC1opG243AtqM5hmw=
 github.com/jinzhu/inflection v1.0.0 h1:K317FqzuhWc8YvSVlFMCCUb36O/S9MCKRDI7QkRKD/E=
 github.com/jinzhu/inflection v1.0.0/go.mod h1:h+uFLlag+Qp1Va5pdKtLDYj+kHp5pxUVkryuEj+Srlc=
 github.com/jinzhu/now v1.1.5 h1:/o9tlHleP7gOFmsnYNz3RGnqzefHA47wQpKrrdTIwXQ=
@@ -51,8 +43,6 @@ go.opentelemetry.io/auto/sdk v1.1.0 h1:cH53jehLUN6UFLY71z+NDOiNJqDdPRaXzTel0sJyS
 go.opentelemetry.io/auto/sdk v1.1.0/go.mod h1:3wSPjt5PWp2RhlCcmmOial7AvC4DQqZb7a7wCow3W8A=
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.63.0 h1:YH4g8lQroajqUwWbq/tr2QX1JFmEXaDLgG+ew9bLMWo=
 go.opentelemetry.io/contrib/instrumentation/google.golang.org/grpc/otelgrpc v0.63.0/go.mod h1:fvPi2qXDqFs8M4B4fmJhE92TyQs9Ydjlg3RvfUp+NbQ=
-go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.63.0 h1:RbKq8BG0FI8OiXhBfcRtqqHcZcka+gU3cskNuf05R18=
-go.opentelemetry.io/contrib/instrumentation/net/http/otelhttp v0.63.0/go.mod h1:h06DGIukJOevXaj/xrNjhi/2098RZzcLTbc0jDAUbsg=
 go.opentelemetry.io/otel v1.38.0 h1:RkfdswUDRimDg0m2Az18RKOsnI8UDzppJAtj01/Ymk8=
 go.opentelemetry.io/otel v1.38.0/go.mod h1:zcmtmQ1+YmQM9wrNsTGV/q/uyusom3P8RxwExxkZhjM=
 go.opentelemetry.io/otel/exporters/otlp/otlptrace v1.38.0 h1:GqRJVj7UmLjCVyVJ3ZFLdPRmhDUp2zFmQe3RHIOsw24=
