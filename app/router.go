@@ -3,6 +3,9 @@ package app
 import (
 	"context"
 	"fmt"
+	"net/http"
+	"strings"
+
 	"github.com/grpc-ecosystem/grpc-gateway/v2/runtime"
 	userV1 "github.com/hgyowan/church-financial-account-grpc/gen/user/v1"
 	memberV1 "github.com/hgyowan/church-financial-core-grpc/gen/member/v1"
@@ -16,8 +19,6 @@ import (
 	pkgLogger "github.com/hgyowan/go-pkg-library/logger"
 	"google.golang.org/grpc"
 	"google.golang.org/grpc/credentials/insecure"
-	"net/http"
-	"strings"
 )
 
 type router struct {
@@ -54,6 +55,9 @@ func (r *router) addHandlerEndpoints(ctx context.Context) error {
 }
 
 func (r *router) RegisterHandler(ctx context.Context) http.Handler {
+	telemetryMw := middleware.TelemetryMiddleware(envs.ServerName)
+	rootHandler := telemetryMw(r.mux)
+
 	return http.HandlerFunc(func(res http.ResponseWriter, req *http.Request) {
 		path := req.URL.Path
 
@@ -76,14 +80,14 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 			switch path {
 			case "/v1/user/token/refresh":
 				base := pkgGrpc.Chain(
-					r.mux,
+					rootHandler,
 					middleware.GetSessionCookieMiddleware,
 				)
 				base.ServeHTTP(res, req)
 				return
 			case "/v1/user/logout":
 				base := pkgGrpc.Chain(
-					r.mux,
+					rootHandler,
 					middleware.ValidTokenMiddleware,
 					middleware.DeleteSessionCookieMiddleware,
 				)
@@ -95,7 +99,7 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 		if strings.HasPrefix(path, "/v1/public") {
 			if strings.HasPrefix(path, "/v1/public/user/login") {
 				base := pkgGrpc.Chain(
-					r.mux,
+					rootHandler,
 					middleware.SessionCookieMiddleware,
 					middleware.InterceptMetadataMiddleware,
 				)
@@ -104,7 +108,7 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 			}
 
 			base := pkgGrpc.Chain(
-				r.mux,
+				rootHandler,
 				middleware.InterceptMetadataMiddleware,
 			)
 			base.ServeHTTP(res, req)
@@ -112,7 +116,7 @@ func (r *router) RegisterHandler(ctx context.Context) http.Handler {
 		}
 
 		base := pkgGrpc.Chain(
-			r.mux,
+			rootHandler,
 			middleware.ValidTokenMiddleware,
 		)
 		// 미들웨어 통과 시 다음 핸들러 호출
