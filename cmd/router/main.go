@@ -26,7 +26,6 @@ func main() {
 
 	bCtx, cancelFunc := context.WithCancel(context.Background())
 	group, gCtx := errgroup.WithContext(bCtx)
-	doneChan := make(chan struct{}, 1)
 
 	if envs.ServiceType == envs.PrdType {
 		shutdown := pkgTrace.InitTracer(gCtx, &pkgTrace.OpenTelemetryConfig{
@@ -55,14 +54,14 @@ func main() {
 		AllowedOrigins:   []string{"http://localhost:3000", envs.CFMHost},
 	}).Handler(r.RegisterHandler(gCtx))
 
+	s := &http.Server{
+		Addr:    fmt.Sprintf(":%s", envs.ServerPort),
+		Handler: c,
+	}
+
 	group.Go(func() error {
-		s := &http.Server{
-			Addr:    fmt.Sprintf(":%s", envs.ServerPort),
-			Handler: c,
-		}
 		err := s.ListenAndServe()
 		pkgLogger.ZapLogger.Logger.Info("GRPC Gateway End")
-		doneChan <- struct{}{}
 		return err
 	})
 
@@ -71,10 +70,19 @@ func main() {
 	defer close(interrupt)
 
 	select {
-	case <-doneChan:
-		cancelFunc()
 	case <-interrupt:
+		pkgLogger.ZapLogger.Logger.Info("received shutdown signal")
+
 		cancelFunc()
+
+		ctx, cancel := context.WithTimeout(context.Background(), 5*time.Second)
+		defer cancel()
+
+		if err := s.Shutdown(ctx); err != nil {
+			pkgLogger.ZapLogger.Logger.Error("server shutdown failed: " + err.Error())
+		} else {
+			pkgLogger.ZapLogger.Logger.Info("server gracefully stopped")
+		}
 	}
 
 	if err := group.Wait(); err != nil {
