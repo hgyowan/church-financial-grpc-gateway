@@ -2,6 +2,7 @@ package main
 
 import (
 	"context"
+	"errors"
 	"fmt"
 	"net/http"
 	"os"
@@ -21,7 +22,6 @@ import (
 )
 
 func main() {
-	// OpenTelemetry Tracer 초기화
 	pkgLogger.MustInitZapLogger()
 
 	bCtx, cancelFunc := context.WithCancel(context.Background())
@@ -61,7 +61,10 @@ func main() {
 
 	group.Go(func() error {
 		err := s.ListenAndServe()
-		pkgLogger.ZapLogger.Logger.Info("GRPC Gateway End")
+		if errors.Is(err, http.ErrServerClosed) {
+			pkgLogger.ZapLogger.Logger.Info("server closed gracefully")
+			return nil
+		}
 		return err
 	})
 
