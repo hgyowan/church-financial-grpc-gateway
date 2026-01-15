@@ -7,8 +7,8 @@ require (
 	github.com/dgrijalva/jwt-go v3.2.0+incompatible
 	github.com/google/uuid v1.6.0
 	github.com/grpc-ecosystem/grpc-gateway/v2 v2.27.2
-	github.com/hgyowan/church-financial-account-grpc v0.0.0-20250929095029-e6f420ec4621
-	github.com/hgyowan/church-financial-core-grpc v0.0.0-20260108121920-b8c0896b3649
+	github.com/hgyowan/church-financial-account-grpc v0.0.0-20260114153117-1d3e0d89aa0e
+	github.com/hgyowan/church-financial-core-grpc v0.0.0-20260114170432-21876e3995aa
 	github.com/hgyowan/go-pkg-library v1.5.12
 	github.com/rs/cors v1.11.1
 	go.opentelemetry.io/otel v1.38.0
